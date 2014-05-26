@@ -29,4 +29,14 @@ RedmineApp::Application.configure do
   config.action_mailer.logger = nil
 
   config.active_support.deprecation = :log
+
+  ActionMailer::Base.smtp_settings = {
+      :port =>           '587',
+      :address =>        'smtp.mandrillapp.com',
+      :user_name =>      ENV['MANDRILL_USERNAME'],
+      :password =>       ENV['MANDRILL_APIKEY'],
+      :domain =>         ENV['MANDRILL_DOMAIN'],
+      :authentication => :plain
+  }
+  ActionMailer::Base.delivery_method = :smtp
 end
